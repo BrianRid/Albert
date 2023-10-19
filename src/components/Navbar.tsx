@@ -30,6 +30,8 @@ interface NavProps {
 const NavLink = (props: Props) => {
   const { children, href } = props;
 
+  console.log("test");
+
   return (
     <Box
       as="a"
