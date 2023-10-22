@@ -7,6 +7,9 @@ import {
 } from "@chakra-ui/react";
 import SidebarContent from "./SidebarContent";
 import MobileNav from "./MobileNav";
+import { api } from "~/utils/api";
+import React from "react";
+import AppContext from "~/context/AppContext";
 
 type SideBarWithHeaderProps = {
   children: React.ReactNode;
@@ -33,7 +36,6 @@ const PrivateSideBarLayout = ({ children }: SideBarWithHeaderProps) => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}

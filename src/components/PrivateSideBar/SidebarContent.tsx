@@ -16,10 +16,10 @@ interface SidebarProps extends BoxProps {
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const LinkItems = [
-    { name: "Accueil", icon: FiHome },
-    { name: "Mes biens", icon: FiHome },
-    { name: "Mes locataires", icon: FiUser },
-    { name: "Mes documents", icon: FiFile },
+    { name: "Accueil", icon: FiHome, href: "/" },
+    { name: "Mes biens", icon: FiHome, href: "/properties" },
+    { name: "Mes locataires", icon: FiUser, href: "/tenants" },
+    { name: "Mes documents", icon: FiFile, href: "/files" },
   ];
 
   return (
@@ -43,7 +43,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} href={link.href}>
           {link.name}
         </NavItem>
       ))}

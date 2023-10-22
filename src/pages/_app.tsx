@@ -1,30 +1,51 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
 import "~/styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
 import AppContext from "~/context/AppContext";
 
 import { api } from "~/utils/api";
-import { User } from "@prisma/client";
+import PrivateLayout from "~/layouts/PrivateLayout";
+import PublicLayout from "~/layouts/PublicLayout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
-  const [user, setUser] = React.useState<User>();
+  const { data: user, isLoading } = api.user.me.useQuery();
 
   const contextValue = {
     user: user,
-    setUser,
   };
+
+  const getLayout = (children: ReactNode) => {
+    if (user && !isLoading) {
+      return <PrivateLayout>{children}</PrivateLayout>;
+    } else {
+      return <PublicLayout>{children}</PublicLayout>;
+    }
+  };
+
+  if (isLoading)
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner />
+      </Box>
+    );
 
   return (
     <AppContext.Provider value={contextValue}>
       <ChakraProvider>
         <SessionProvider session={session}>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </SessionProvider>
       </ChakraProvider>
     </AppContext.Provider>
