@@ -1,14 +1,20 @@
-import { Button, Text } from "@chakra-ui/react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { Text } from "@chakra-ui/react";
+import React from "react";
+import AppContext from "~/context/AppContext";
 import PrivateLayout from "~/layouts/PrivateLayout";
 import PublicLayout from "~/layouts/PublicLayout";
-
 import { api } from "~/utils/api";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { user, setUser } = React.useContext(AppContext);
 
-  const user = session && session.user;
+  const { data: tmpUser } = api.user.me.useQuery();
+
+  React.useEffect(() => {
+    if (tmpUser) {
+      setUser(tmpUser);
+    }
+  }, [tmpUser]);
 
   if (user) {
     return (
