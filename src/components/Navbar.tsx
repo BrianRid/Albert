@@ -14,7 +14,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 interface Props {
@@ -38,7 +38,7 @@ const NavLink = (props: Props) => {
       rounded={"md"}
       _hover={{
         textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
+        bg: useColorModeValue("gray.100", "gray.700"),
       }}
       href={href}
     >
@@ -56,10 +56,15 @@ export default function Navbar(props: NavProps) {
   const user = session && session.user;
 
   return (
-    <Box bg={useColorModeValue("#F4F4E8", "gray.900")} px={4}>
-      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+    <Box bg={useColorModeValue("gray.100", "gray.100")} px={4}>
+      <Flex
+        minH="fit-content"
+        // h={16}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
         <IconButton
-          size={"md"}
+          size={["xs", "md"]}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={"Open Menu"}
           display={{ md: "none" }}
@@ -67,7 +72,7 @@ export default function Navbar(props: NavProps) {
         />
         <HStack spacing={8} alignItems={"center"}>
           <Box>
-            <Image src="/Albert.png" width={50} height={50} alt="Albert" />
+            <Image src="/Albert.png" width={75} height={75} alt="Albert" />
           </Box>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {links.map((link) => (
@@ -97,11 +102,8 @@ export default function Navbar(props: NavProps) {
               )}
             </MenuButton>
             <MenuList>
-              {links.map((link) => (
-                <MenuItem key={link.href} onClick={onClose}>
-                  {link.label}
-                </MenuItem>
-              ))}
+              <MenuItem>Mon compte</MenuItem>
+              <MenuItem onClick={() => signOut()}>Déconnexion</MenuItem>
             </MenuList>
           </Menu>
           {!user && <Button onClick={() => signIn("google")}>Connexion</Button>}
