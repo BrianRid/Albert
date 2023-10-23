@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { User } from "@prisma/client";
-import { SetStateAction, createContext } from "react";
+import { createContext } from "react";
 
 interface AppContextInterface {
   user: User | undefined | null;
