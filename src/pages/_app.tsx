@@ -3,17 +3,20 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
 import "~/styles/globals.css";
-import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
+import { Box, ChakraProvider, Spinner, extendTheme } from "@chakra-ui/react";
 import AppContext from "~/context/AppContext";
 
 import { api } from "~/utils/api";
 import PrivateLayout from "~/layouts/PrivateLayout";
 import PublicLayout from "~/layouts/PublicLayout";
+import theme from "~/utils/global/theme";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const extendedTheme = extendTheme(theme);
+
   const { data: user, isLoading } = api.user.me.useQuery();
 
   const contextValue = {
@@ -43,7 +46,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 
   return (
     <AppContext.Provider value={contextValue}>
-      <ChakraProvider>
+      <ChakraProvider theme={extendedTheme}>
         <SessionProvider session={session}>
           {getLayout(<Component {...pageProps} />)}
         </SessionProvider>

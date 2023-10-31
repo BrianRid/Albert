@@ -20,7 +20,7 @@ export default function PublicLayout({
   return (
     <Box minH={"100vh"}>
       <Navbar links={links} />
-      <Container maxW={"6xl"}>{children}</Container>
+      {children}
     </Box>
   );
 }
