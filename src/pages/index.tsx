@@ -1,7 +1,6 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 import PublicHomepage from "~/components/PublicHomePage";
-import AppContext from "~/context/AppContext";
 import { api } from "~/utils/api";
 
 export default function Home() {

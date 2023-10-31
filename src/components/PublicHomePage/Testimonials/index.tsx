@@ -18,7 +18,7 @@ const Testimonials = () => {
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
           <Heading>Témoignages Clients</Heading>
-          <Text>Notre maitre mot : Supprimer la complexité </Text>
+          <Text>Découvrez ce que nos clients pensent de notre service.</Text>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}

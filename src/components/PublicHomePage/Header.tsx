@@ -70,7 +70,7 @@ export default function Header() {
       <Container maxW={"6xl"} py={16}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <GridItem colSpan={{ base: 1, md: 1 }}>
-            <Stack spacing={4}>
+            <Stack spacing={10}>
               <Text
                 textTransform={"uppercase"}
                 color={"blue.400"}
@@ -124,7 +124,7 @@ export default function Header() {
           </GridItem>
           <GridItem
             colSpan={{ base: 1, md: 1 }}
-            alignSelf={"flex-end"}
+            alignSelf={"center"}
             alignItems={"center"}
           >
             <Image
