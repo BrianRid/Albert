@@ -1,4 +1,5 @@
 import { Box, Container } from "@chakra-ui/react";
+import Footer from "~/components/Footer/Footer";
 import Navbar from "~/components/Navbar";
 
 export default function PublicLayout({
@@ -21,6 +22,7 @@ export default function PublicLayout({
     <Box minH={"100vh"}>
       <Navbar links={links} />
       {children}
+      <Footer />
     </Box>
   );
 }

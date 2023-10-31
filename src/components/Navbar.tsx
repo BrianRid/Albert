@@ -12,10 +12,10 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 
 interface Props {
   children: React.ReactNode;
@@ -59,7 +59,8 @@ export default function Navbar(props: NavProps) {
     <Box bg={useColorModeValue("gray.100", "gray.100")} px={4}>
       <Flex
         minH="fit-content"
-        // h={16}
+        h={16}
+        py={{ base: 2, md: 10 }}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
@@ -72,7 +73,13 @@ export default function Navbar(props: NavProps) {
         />
         <HStack spacing={8} alignItems={"center"}>
           <Box>
-            <Image src="/Albert.png" width={75} height={75} alt="Albert" />
+            <Image
+              src="/Albert.png"
+              width={50}
+              height={50}
+              alt="Albert"
+              rounded={"3xl"}
+            />
           </Box>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {links.map((link) => (

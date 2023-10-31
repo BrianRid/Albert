@@ -12,14 +12,7 @@ import {
   Box,
   Container,
 } from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoDocument,
-  IoHome,
-  IoLogoBitcoin,
-  IoPeople,
-  IoSearchSharp,
-} from "react-icons/io5";
+import { IoDocument, IoHome, IoPeople } from "react-icons/io5";
 import React, { ReactElement } from "react";
 import { gsap } from "gsap";
 

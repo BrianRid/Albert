@@ -22,9 +22,11 @@ const PriceWrapper = (props: PriceWrapperProps) => {
       mb={4}
       shadow="base"
       borderWidth="1px"
-      alignSelf={{ base: "center", lg: "flex-start" }}
+      alignSelf={{ base: "center", lg: "center" }}
       borderColor={useColorModeValue("gray.200", "gray.500")}
       borderRadius={"xl"}
+      maxW={["sm", "sm"]}
+      minW={["sm", "sm"]}
     >
       <Box position={props.priceItem.subheader ? "relative" : undefined}>
         {props.priceItem.subheader && (
@@ -35,7 +37,7 @@ const PriceWrapper = (props: PriceWrapperProps) => {
             px={3}
             py={1}
             style={{
-              transform: "translateY(-50%) translateX(50%)",
+              transform: "translate(70%, -50%)",
             }}
             bg="red.400"
             color="white"
@@ -53,15 +55,23 @@ const PriceWrapper = (props: PriceWrapperProps) => {
           {props.priceItem.title}
         </Text>
         <HStack justifyContent="center">
-          <Text fontSize="5xl" fontWeight="900">
-            {props.priceItem.price}
-          </Text>
-          <Text fontSize="3xl" fontWeight="600">
-            €
-          </Text>
-          <Text fontSize="3xl" color="gray.500">
-            /mois
-          </Text>
+          {props.priceItem.price === "0" ? (
+            <Text fontSize="3xl" fontWeight="900">
+              Gratuit
+            </Text>
+          ) : (
+            <>
+              <Text fontSize="5xl" fontWeight="900">
+                {props.priceItem.price}
+              </Text>
+              <Text fontSize="3xl" fontWeight="600">
+                €
+              </Text>
+              <Text fontSize="3xl" color="gray.500">
+                /mois
+              </Text>
+            </>
+          )}
         </HStack>
       </Box>
       <VStack
