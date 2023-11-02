@@ -12,10 +12,10 @@ import {
   MenuList,
   Text,
   VStack,
+  Image,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { signOut } from "next-auth/react";
-import Image from "next/image";
 import React from "react";
 import { FiChevronDown, FiMenu } from "react-icons/fi";
 import AppContext from "~/context/AppContext";
@@ -33,7 +33,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue("gray.100", "gray.100")}
+      bg={useColorModeValue("white.100", "white.100")}
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.100", "gray.200")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
@@ -47,7 +47,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
       <Box display={["block", "none"]}>
-        <Image src="/Albert.png" width={75} height={75} alt="Albert" />
+        <Image
+          src="/Albert.png"
+          width={50}
+          height={50}
+          rounded={"3xl"}
+          alt="Albert"
+        />
       </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
@@ -59,7 +65,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               _focus={{ boxShadow: "none" }}
             >
               <HStack>
-                <Avatar size={"sm"} src={user?.image ?? ""} />
+                {user?.image !== null && (
+                  <Avatar size={"sm"} src={user?.image} />
+                )}
                 <VStack
                   display={{ base: "none", md: "flex" }}
                   alignItems="flex-start"
@@ -74,7 +82,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               </HStack>
             </MenuButton>
             <MenuList
-              bg={useColorModeValue("white", "gray.700")}
+              bg={useColorModeValue("white", "white.700")}
               borderColor={useColorModeValue("white", "gray.700")}
             >
               <MenuItem>Profile</MenuItem>

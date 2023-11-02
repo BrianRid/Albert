@@ -3,12 +3,11 @@ import {
   type BoxProps,
   CloseButton,
   Flex,
-  Text,
+  Image,
   useColorModeValue,
 } from "@chakra-ui/react";
 import NavItem from "./NavItem";
 import { FiFile, FiHome, FiUser } from "react-icons/fi";
-import Image from "next/image";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -25,7 +24,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue("gray.100", "gray.100")}
+      bg={useColorModeValue("white.100", "white.100")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.100", "gray.700")}
       w={{ base: "full", md: 60 }}
@@ -39,7 +38,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         mx="8"
         justifyContent={["space-between", "center"]}
       >
-        <Image src="/Albert.png" width={75} height={75} alt="Albert" />
+        <Image
+          src="/Albert.png"
+          width={50}
+          height={50}
+          rounded={"3xl"}
+          alt="Albert"
+        />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
