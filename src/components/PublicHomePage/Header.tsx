@@ -76,7 +76,9 @@ export default function Header() {
               >
                 Qui sommes nous ?
               </Text>
-              <Heading>Optimisez votre Gestion Immobilière avec Albert</Heading>
+              <Heading>
+                Gerez vos biens n&apos;a jamais été aussi facile avec Albert
+              </Heading>
               <Text color={"gray.500"} fontSize={"lg"}>
                 La plateforme tout-en-un pour gérer, suivre et maximiser la
                 rentabilité de vos biens immobiliers.
